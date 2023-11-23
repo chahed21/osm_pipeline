@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
     steps:
     - name: download dresden
       run: sudo wget https://download.bbbike.org/osm/bbbike/Dresden/Dresden.osm.pbf
@@ -21,12 +25,6 @@ jobs:
     - name: ls2
       run: ls /usr/share/osm2pgsql/
     - name: upload
-      run: osm2pgsql -c -d postgres -U postgres -H osm.ckugl9ckuv4d.eu-north-1.rds.amazonaws.com -W --hstore /home/runner/work/osm_pipeline/osm_pipeline/Dresden.osm.pbf
+      run: osm2pgsql -c -d postgres -U $POSTGRES_USER -H osm.ckugl9ckuv4d.eu-north-1.rds.amazonaws.com -W --hstore /home/runner/work/osm_pipeline/osm_pipeline/Dresden.osm.pbf
     - name: Test
       run: echo "We are testing the pipeline schedule"
-
-
-      
-
-
-   
