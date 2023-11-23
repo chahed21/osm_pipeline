@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name : install
+    - run: apt install osm2pgsql
     - name: Test
       run: echo "We are testing the pipeline schedule"
+      
 
 
    
