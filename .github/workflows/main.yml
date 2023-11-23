@@ -25,6 +25,8 @@ jobs:
     - name: ls2
       run: ls /usr/share/osm2pgsql/
     - name: upload
-      run: osm2pgsql -c -d postgres -U $POSTGRES_USER -H osm.ckugl9ckuv4d.eu-north-1.rds.amazonaws.com -P 65432 -W --hstore /home/runner/work/osm_pipeline/osm_pipeline/Dresden.osm.pbf -w $POSTGRES_PASSWORD
+      env:
+        PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+      run: osm2pgsql -c -d postgres -U $POSTGRES_USER -H osm.ckugl9ckuv4d.eu-north-1.rds.amazonaws.com -P 65432 --hstore /home/runner/work/osm_pipeline/osm_pipeline/Dresden.osm.pbf
     - name: Test
       run: echo "We are testing the pipeline schedule"
