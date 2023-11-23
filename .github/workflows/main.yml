@@ -11,11 +11,15 @@ jobs:
 
     steps:
     - name: download dresden
-      run: sudo wget https://download.bbbike.org/osm/bbbike/Dresden/
+      run: sudo wget https://download.bbbike.org/osm/bbbike/Dresden/Dresden.osm.pbf
     - name: install
       run: sudo apt install osm2pgsql
     - name: ls
       run: ls
+    - name: pwd
+      run: pwd
+    - name: ls2
+      run: ls /usr/share/osm2pgsql/
     - name: Test
       run: echo "We are testing the pipeline schedule"
 
