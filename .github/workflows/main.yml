@@ -27,6 +27,11 @@ jobs:
     - name : psql
       env:
         PGPASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: psql --host=osm.ckugl9ckuv4d.eu-north-1.rds.amazonaws.com --port=65432 --dbname=postgres --username=postgres 
+      run: |
+        psql --host=osm.ckugl9ckuv4d.eu-north-1.rds.amazonaws.com --port=65432 --dbname=postgres --username=postgres <<EOF
+        CREATE DATABASE map;
+        \c map;
+        -- Add more SQL commands if needed
+        EOF
     - name: Test
       run: echo "We are testing the pipeline schedule"
