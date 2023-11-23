@@ -14,6 +14,8 @@ jobs:
       run: sudo wget https://download.bbbike.org/osm/bbbike/Dresden/
     - name: install
       run: sudo apt install osm2pgsql
+    - name: ls
+      run: ls
     - name: Test
       run: echo "We are testing the pipeline schedule"
 
